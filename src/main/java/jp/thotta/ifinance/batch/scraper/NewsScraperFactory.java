@@ -36,9 +36,9 @@ public class NewsScraperFactory {
     List<Scraper> scrapers = new ArrayList<Scraper>();
     for(String scraperName : scraperMap.keySet()) {
       Scraper scraper = new Scraper(scraperName);
-      scrapers.add(scraper);
+      scraperManager.add(scraper);
     }
-    return scraperManager._import(scrapers);
+    return true;
   }
 
   static Map<String, NewsScraper> makeScraperMap() {
@@ -49,5 +49,6 @@ public class NewsScraperFactory {
 
   public static void main(String[] args) {
     initDatabase();
+    CommonEntityManager.closeFactory();
   }
 }
