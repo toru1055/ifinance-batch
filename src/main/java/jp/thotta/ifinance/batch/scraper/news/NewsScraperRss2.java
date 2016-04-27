@@ -16,7 +16,8 @@ import jp.thotta.ifinance.batch.scraper.NewsScraper;
 import jp.thotta.ifinance.batch.scraper.BaseNewsScraper;
 
 public class NewsScraperRss2 extends BaseNewsScraper {
-  SimpleDateFormat f = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
+  SimpleDateFormat f
+    = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
 
   @Override
   protected List<News> getNewsList(Document doc) {
@@ -35,12 +36,6 @@ public class NewsScraperRss2 extends BaseNewsScraper {
       news.setAnnouncedDate(announcedDate);
       news.setCollectedDate(new Date());
       newsList.add(news);
-      System.out.println("title: " + title);
-      System.out.println("description: " + description);
-      System.out.println("url: " + link);
-      System.out.println("announcedDate: " + announcedDate);
-      System.out.println("collectedDate: " + new Date());
-      System.out.println();
     }
     return newsList;
   }
