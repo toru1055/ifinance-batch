@@ -24,25 +24,26 @@ public class SubscriptionReader {
   public void execOnce() {
     List<Subscription> subscriptions = subscriptionManager.selectAll();
     for(Subscription subscription : subscriptions) {
-      System.out.println("Start reading subscription: " + subscription.getName());
-      Date now = new Date();
-      int interval = Integer.MAX_VALUE;
-      if(subscription.getLastReadDate() != null) {
-        interval = (int)(
-            (now.getTime() - subscription.getLastReadDate().getTime()) / 1000L);
-      }
-      if(interval > subscription.getInterval()) {
+      if(subscription.isReadable()) {
+        System.out.println(
+            "Start reading subscription: " + subscription.getName());
         NewsScraper ns = NewsScraperFactory.create(subscription);
-        List<News> newsList = ns.getNewsList(subscription.getUrl());
-        subscription.setLastReadDate(now);
-        subscriptionManager.update(subscription);
-        for(News news : newsList) {
-          news.setSubscription(subscription);
-          if(subscription.getFixedIndustry() != null) {
-            news.addIndustry(subscription.getFixedIndustry());
+        try {
+          List<News> newsList = ns.getNewsList(subscription.getUrl());
+          subscription.setLastReadDate();
+          subscriptionManager.update(subscription);
+          for(News news : newsList) {
+            news.setSubscription(subscription);
+            if(subscription.getFixedIndustry() != null) {
+              news.addIndustry(subscription.getFixedIndustry());
+            }
+            newsManager.add(news);
           }
-          newsManager.add(news);
+        } catch(Exception e) {
+          e.printStackTrace();
         }
+      } else {
+        System.out.println("Skip for interval: " + subscription.getName());
       }
     }
   }
@@ -52,6 +53,8 @@ public class SubscriptionReader {
     while(true) {
       System.out.println("[" + (count++) + "] Execute " + this.getClass().getSimpleName());
       execOnce();
+      System.out.println("End execution.");
+      System.out.println();
       try {
         Thread.sleep(10000);
       } catch(Exception e) {}
