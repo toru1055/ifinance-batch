@@ -1,0 +1,10 @@
+#!/bin/bash
+#$ java -cp bin/ifinance-batch-1.0-SNAPSHOT-jar-with-dependencies.jar jp.thotta.ifinance.batch.job.SubscriptionReader daemon
+
+JAVA=/usr/bin/java
+BINDIR=`dirname $0`
+JAR=${BINDIR}/ifinance-batch-1.0-SNAPSHOT-jar-with-dependencies.jar
+CLASS_NAME=jp.thotta.ifinance.batch.job.SubscriptionReader
+MODE=$1
+
+$JAVA -cp $JAR $CLASS_NAME $MODE
