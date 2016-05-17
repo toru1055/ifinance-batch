@@ -17,8 +17,6 @@ import java.util.List;
  * Created by thotta on 2016/05/17.
  */
 public class NewsScraperRss1 extends BaseNewsScraper {
-    SimpleDateFormat f
-            = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
     @Override
     protected List<News> getNewsList(Document doc) {
@@ -41,13 +39,8 @@ public class NewsScraperRss1 extends BaseNewsScraper {
         return newsList;
     }
 
-    Date parsePubDate(String pubdate) {
-        try {
-            Date d = f.parse(pubdate);
-            return d;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    @Override
+    protected SimpleDateFormat getDateFormat() {
+        return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     }
 }

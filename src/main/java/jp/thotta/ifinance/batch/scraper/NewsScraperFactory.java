@@ -1,5 +1,6 @@
 package jp.thotta.ifinance.batch.scraper;
 
+import jp.thotta.ifinance.batch.scraper.news.NewsScraperAtom;
 import jp.thotta.ifinance.batch.scraper.news.NewsScraperRss1;
 import jp.thotta.ifinance.batch.scraper.news.NewsScraperRss2;
 import jp.thotta.ifinance.common.dao.CommonEntityManager;
@@ -45,6 +46,7 @@ public class NewsScraperFactory {
         Map<String, NewsScraper> m = new HashMap<String, NewsScraper>();
         m.put("Rss2", new NewsScraperRss2());
         m.put("Rss1", new NewsScraperRss1());
+        m.put("Atom", new NewsScraperAtom());
         return m;
     }
 

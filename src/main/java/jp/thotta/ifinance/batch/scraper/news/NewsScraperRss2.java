@@ -14,8 +14,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class NewsScraperRss2 extends BaseNewsScraper {
-    SimpleDateFormat f
-            = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
 
     @Override
     protected List<News> getNewsList(Document doc) {
@@ -25,8 +23,8 @@ public class NewsScraperRss2 extends BaseNewsScraper {
             String title = item.select("title").text();
             String description = Jsoup.parse(item.select("description").text()).text();
             String link = item.select("link").text();
-            String pubdate = item.select("pubdate").text();
-            Date announcedDate = parsePubDate(pubdate);
+            String pubDate = item.select("pubdate").text();
+            Date announcedDate = parsePubDate(pubDate);
             News news = new News();
             news.setUrl(link);
             news.setTitle(title);
@@ -38,14 +36,10 @@ public class NewsScraperRss2 extends BaseNewsScraper {
         return newsList;
     }
 
-    Date parsePubDate(String pubdate) {
-        try {
-            Date d = f.parse(pubdate);
-            return d;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    @Override
+    protected SimpleDateFormat getDateFormat() {
+        return new SimpleDateFormat(
+                "EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
     }
 
 }
