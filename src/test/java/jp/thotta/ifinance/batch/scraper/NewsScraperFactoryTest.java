@@ -12,7 +12,7 @@ public class NewsScraperFactoryTest extends TestCase {
 
     public void testBasicUsage() {
         assertTrue(NewsScraperFactory.initDatabase());
-        String url = "https://www.facebook.com/business/news/rss/";
+        String url = "http://suumo.jp/journal/?feed=rss22";
         NewsScraper ns = NewsScraperFactory.create("Rss2");
         assertTrue(ns != null);
         List<News> newsList = ns.getNewsList(url);

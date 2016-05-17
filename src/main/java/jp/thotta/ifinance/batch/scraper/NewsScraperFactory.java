@@ -1,14 +1,13 @@
 package jp.thotta.ifinance.batch.scraper;
 
+import jp.thotta.ifinance.batch.scraper.news.NewsScraperRss1;
 import jp.thotta.ifinance.batch.scraper.news.NewsScraperRss2;
 import jp.thotta.ifinance.common.dao.CommonEntityManager;
 import jp.thotta.ifinance.common.dao.ScraperManager;
 import jp.thotta.ifinance.common.entity.Scraper;
 import jp.thotta.ifinance.common.entity.Subscription;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class NewsScraperFactory {
@@ -35,7 +34,6 @@ public class NewsScraperFactory {
     }
 
     public static boolean initDatabase() {
-        List<Scraper> scrapers = new ArrayList<Scraper>();
         for (String scraperName : scraperMap.keySet()) {
             Scraper scraper = new Scraper(scraperName);
             scraperManager.add(scraper);
@@ -46,6 +44,7 @@ public class NewsScraperFactory {
     static Map<String, NewsScraper> makeScraperMap() {
         Map<String, NewsScraper> m = new HashMap<String, NewsScraper>();
         m.put("Rss2", new NewsScraperRss2());
+        m.put("Rss1", new NewsScraperRss1());
         return m;
     }
 
