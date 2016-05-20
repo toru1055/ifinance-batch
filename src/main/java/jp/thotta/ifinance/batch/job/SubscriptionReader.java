@@ -22,7 +22,7 @@ public class SubscriptionReader {
     public void execOnce() {
         List<Subscription> subscriptions = subscriptionManager.selectAll();
         for (Subscription subscription : subscriptions) {
-            if (subscription.isReadable()) {
+            if (subscription.isReadable() && subscription.isActive()) {
                 System.out.println(
                         "Start reading subscription: " + subscription.getName());
                 NewsScraper ns = NewsScraperFactory.create(subscription);
