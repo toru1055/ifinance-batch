@@ -8,7 +8,10 @@ import jp.thotta.ifinance.common.dao.SubscriptionManager;
 import jp.thotta.ifinance.common.entity.News;
 import jp.thotta.ifinance.common.entity.Subscription;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SubscriptionReader {
     SubscriptionManager subscriptionManager;
@@ -44,6 +47,14 @@ public class SubscriptionReader {
                 System.out.println("Skip for interval: " + subscription.getName());
             }
         }
+    }
+
+    Collection<News> deduplicateWithTitle(List<News> newsList) {
+        Map<String, News> newsMap = new HashMap<String, News>();
+        for(News news : newsList) {
+            newsMap.put(news.getTitle(), news);
+        }
+        return newsMap.values();
     }
 
     public void execDaemon() {
