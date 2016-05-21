@@ -30,7 +30,9 @@ public class SubscriptionReader {
                         "Start reading subscription: " + subscription.getName());
                 NewsScraper ns = NewsScraperFactory.create(subscription);
                 try {
-                    List<News> newsList = ns.getNewsList(subscription.getUrl());
+                    Collection<News> newsList = deduplicateByTitle(
+                            ns.getNewsList(subscription.getUrl())
+                    );
                     subscription.setLastReadDate();
                     subscriptionManager.update(subscription);
                     for (News news : newsList) {
@@ -49,7 +51,7 @@ public class SubscriptionReader {
         }
     }
 
-    Collection<News> deduplicateWithTitle(List<News> newsList) {
+    Collection<News> deduplicateByTitle(List<News> newsList) {
         Map<String, News> newsMap = new HashMap<String, News>();
         for(News news : newsList) {
             newsMap.put(news.getTitle(), news);
