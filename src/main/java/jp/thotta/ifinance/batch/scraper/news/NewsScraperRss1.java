@@ -41,6 +41,6 @@ public class NewsScraperRss1 extends BaseNewsScraper {
 
     @Override
     protected SimpleDateFormat getDateFormat() {
-        return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
     }
 }

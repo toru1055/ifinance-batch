@@ -12,6 +12,7 @@ import java.util.List;
 public class NewsScraperRss1Test extends TestCase {
     public void testGetNewsList() {
         String url = "http://www.re-port.net/rss/news.php";
+        //String url = "http://rss.rssad.jp/rss/shukanjutaku/np/news.rdf";
         NewsScraper ns = new NewsScraperRss1();
         List<News> newsList = ns.getNewsList(url);
         assertTrue(newsList.size() > 0);
