@@ -12,7 +12,7 @@ public class SubscriptionReaderTest extends TestCase {
     IndustryManager industryManager = new IndustryManager();
     NewsManager newsManager = new NewsManager();
     ScraperManager scraperManager = new ScraperManager();
-    SubscriptionReader sr = new SubscriptionReader();
+    CollectionRunner runner = new CollectionRunner();
 
     @Override
     protected void setUp() {
@@ -29,7 +29,7 @@ public class SubscriptionReaderTest extends TestCase {
     }
 
     public void testBasic() {
-        sr.execOnce();
+        runner.executeNewsSubscription();
         News news = newsManager.find(1L);
         assertTrue(news != null);
         assertTrue(news.getTitle().length() > 0);

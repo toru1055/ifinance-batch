@@ -1,6 +1,5 @@
 package jp.thotta.ifinance.batch.scraper;
 
-import javafx.scene.input.DataFormat;
 import jp.thotta.ifinance.batch.util.XmlGet;
 import jp.thotta.ifinance.common.entity.News;
 import org.jsoup.nodes.Document;
@@ -27,5 +26,6 @@ public abstract class BaseNewsScraper implements NewsScraper {
     }
 
     abstract protected List<News> getNewsList(Document doc);
+
     abstract protected SimpleDateFormat getDateFormat();
 }

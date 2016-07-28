@@ -3,16 +3,26 @@ package jp.thotta.ifinance.batch.scraper;
 import jp.thotta.ifinance.batch.scraper.news.NewsScraperAtom;
 import jp.thotta.ifinance.batch.scraper.news.NewsScraperRss1;
 import jp.thotta.ifinance.batch.scraper.news.NewsScraperRss2;
-import jp.thotta.ifinance.common.dao.CommonEntityManager;
-import jp.thotta.ifinance.common.dao.ScraperManager;
+import jp.thotta.ifinance.common.dao.MasterDataManager;
 import jp.thotta.ifinance.common.entity.Scraper;
 import jp.thotta.ifinance.common.entity.Subscription;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+ * Initialize部分をjobに移す
+ * SubscriptionReaderも名前を変えて、index_collectorも動かす
+ * パッケージ構成をもうちょっと考え直したい
+ * scraper/
+ *      - IndexCollector(interface)
+ *      - IndexCollectorFactory
+ *      - IndexCollectorBase
+ *      - index/
+ *          - NikkeiAverageCollector
+ */
 public class NewsScraperFactory {
-    static ScraperManager scraperManager = new ScraperManager();
+    static MasterDataManager<Scraper> scraperManager = new MasterDataManager<Scraper>(Scraper.class);
     static Map<String, NewsScraper> scraperMap = makeScraperMap();
 
     public static NewsScraper create(String scraperName) {
@@ -48,10 +58,5 @@ public class NewsScraperFactory {
         m.put("Rss1", new NewsScraperRss1());
         m.put("Atom", new NewsScraperAtom());
         return m;
-    }
-
-    public static void main(String[] args) {
-        initDatabase();
-        CommonEntityManager.closeFactory();
     }
 }
