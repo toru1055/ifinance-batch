@@ -4,6 +4,6 @@
 JAVA=/usr/bin/java
 BINDIR=`dirname $0`
 JAR=${BINDIR}/ifinance-batch-1.2.1-jar-with-dependencies.jar
-CLASS_NAME=jp.thotta.ifinance.batch.scraper.NewsScraperFactory
+CLASS_NAME=jp.thotta.ifinance.batch.job.Initializer
 
 $JAVA -cp $JAR $CLASS_NAME
