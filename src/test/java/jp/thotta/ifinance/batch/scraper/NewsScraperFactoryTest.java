@@ -1,14 +1,17 @@
 package jp.thotta.ifinance.batch.scraper;
 
 import jp.thotta.ifinance.common.dao.CommonEntityManager;
+import jp.thotta.ifinance.common.dao.MasterDataManager;
 import jp.thotta.ifinance.common.dao.ScraperManager;
 import jp.thotta.ifinance.common.entity.News;
+import jp.thotta.ifinance.common.entity.Scraper;
 import junit.framework.TestCase;
 
 import java.util.List;
 
 public class NewsScraperFactoryTest extends TestCase {
-    ScraperManager scraperManager = new ScraperManager();
+    MasterDataManager<Scraper> scraperManager =
+            new MasterDataManager<Scraper>(Scraper.class);
 
     public void testBasicUsage() {
         assertTrue(NewsScraperFactory.initDatabase());

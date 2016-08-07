@@ -4,14 +4,17 @@ import jp.thotta.ifinance.batch.scraper.NewsScraperFactory;
 import jp.thotta.ifinance.common.dao.*;
 import jp.thotta.ifinance.common.entity.Industry;
 import jp.thotta.ifinance.common.entity.News;
+import jp.thotta.ifinance.common.entity.Scraper;
 import jp.thotta.ifinance.common.entity.Subscription;
 import junit.framework.TestCase;
 
 public class SubscriptionReaderTest extends TestCase {
     SubscriptionManager subscriptionManager = new SubscriptionManager();
-    IndustryManager industryManager = new IndustryManager();
+    MasterDataManager<Industry> industryManager =
+            new MasterDataManager<Industry>(Industry.class);
     NewsManager newsManager = new NewsManager();
-    ScraperManager scraperManager = new ScraperManager();
+    MasterDataManager<Scraper> scraperManager =
+            new MasterDataManager<Scraper>(Scraper.class);
     CollectionRunner runner = new CollectionRunner();
 
     @Override

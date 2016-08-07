@@ -13,6 +13,9 @@
         <class>jp.thotta.ifinance.common.entity.NewsIndustry</class>
         <class>jp.thotta.ifinance.common.entity.Scraper</class>
         <class>jp.thotta.ifinance.common.entity.Subscription</class>
+        <class>jp.thotta.ifinance.common.entity.MarketIndexCollector</class>
+        <class>jp.thotta.ifinance.common.entity.MarketIndexMaster</class>
+        <class>jp.thotta.ifinance.common.entity.DailyMarketIndex</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

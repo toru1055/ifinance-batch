@@ -1,5 +1,7 @@
 package jp.thotta.ifinance.batch.scraper;
 
+import jp.thotta.ifinance.batch.scraper.index.IndexCollectorDowJones;
+import jp.thotta.ifinance.batch.scraper.index.IndexCollectorNikkei225;
 import jp.thotta.ifinance.common.dao.MasterDataManager;
 import jp.thotta.ifinance.common.entity.MarketIndexCollector;
 import jp.thotta.ifinance.common.entity.MarketIndexMaster;
@@ -36,6 +38,8 @@ public class IndexCollectorFactory {
 
     static Map<String, IndexCollector> makeIndexCollectorMap() {
         Map<String, IndexCollector> m = new HashMap<String, IndexCollector>();
+        m.put(IndexCollectorNikkei225.INDEX_NAME, new IndexCollectorNikkei225());
+        m.put(IndexCollectorDowJones.INDEX_NAME, new IndexCollectorDowJones());
         return m;
     }
 }
