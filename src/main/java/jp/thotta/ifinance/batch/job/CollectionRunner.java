@@ -63,6 +63,8 @@ public class CollectionRunner {
                 );
                 IndexCollector collector = IndexCollectorFactory.create(miMaster);
                 Double val = collector.getCurrentValue();
+                miMaster.setLastReadDate();
+                miMasterManager.update(miMaster);
                 if (val != null) {
                     DailyMarketIndex dailyMarketIndex = dailyMarketIndexManager.findToday(miMaster);
                     if (dailyMarketIndex == null) {
