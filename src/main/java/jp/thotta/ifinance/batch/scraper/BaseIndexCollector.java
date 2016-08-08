@@ -19,6 +19,9 @@ public class BaseIndexCollector implements IndexCollector {
     public Double getCurrentValue() {
         Document doc = new HttpGet().get(sourceUrl);
         String valString = doc.select(selector).text();
+        if (valString.equals("---")) {
+            return null;
+        }
         Double val = Double.parseDouble(valString.replace(",", ""));
         return val;
     }
