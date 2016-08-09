@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 
 import java.net.UnknownHostException;
 
+// TODO: Singletonにして、連続して同じドメインにアクセスする場合に制御
 public class HttpGet {
     private static final int SLEEP_TIME = 1000;
     private static final int RETRY_NUM = 2;
@@ -17,8 +18,9 @@ public class HttpGet {
         for (int i = 0; i <= RETRY_NUM; i++) {
             if (i > 0) {
                 System.out.print("Retrying[" + i + "], ");
-                sleep();
+                //sleep();
             }
+            sleep();
             System.out.println("[HttpGet] " + url);
             try {
                 Document d = getDocument(url, timeout);
