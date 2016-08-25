@@ -3,7 +3,7 @@
 
 JAVA=/usr/bin/java
 BINDIR=`dirname $0`
-JAR=${BINDIR}/ifinance-batch-1.2.1-jar-with-dependencies.jar
+JAR=${BINDIR}/ifinance-batch-1.2.2-jar-with-dependencies.jar
 CLASS_NAME=jp.thotta.ifinance.batch.job.CollectionRunner
 MODE=$1
 

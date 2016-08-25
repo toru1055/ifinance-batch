@@ -17,12 +17,14 @@ public class BaseIndexCollector implements IndexCollector {
     }
 
     public Double getCurrentValue() {
+        Double val = null;
         Document doc = new HttpGet().get(sourceUrl);
-        String valString = doc.select(selector).text();
-        if (valString.equals("---")) {
-            return null;
+        if (doc != null) {
+            String valString = doc.select(selector).text();
+            if (!valString.equals("---")) {
+                val = Double.parseDouble(valString.replace(",", ""));
+            }
         }
-        Double val = Double.parseDouble(valString.replace(",", ""));
         return val;
     }
 }
